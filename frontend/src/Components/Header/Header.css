@@ -1,0 +1,91 @@
+#head{
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+    padding: 15px;
+}
+
+#head-2{
+    display: flex;
+    list-style-type: none;
+}
+
+#head-2 li a{
+    padding-left: 15px;
+    text-decoration: none;
+    color: black;
+}
+
+#head-3 a{
+    padding-left: 15px;
+    text-decoration: none;
+    color: black;
+}
+
+#head img{
+    height: 60px;
+    width: 80px;
+}
+
+/* Base styles for the list */
+ul.dropdown-menu-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Style for dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Style for dropdown links */
+.dropdown > a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+/* Style for dropdown indicator */
+.dropdown-indicator {
+    margin-left: 5px;
+}
+
+/* Hide dropdown menu by default */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 1000;
+}
+
+/* Style for dropdown items */
+.dropdown-menu li {
+    padding: 10px 15px;
+}
+
+/* Style for dropdown links inside the menu */
+.dropdown-menu li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+/* Change color on hover */
+.dropdown-menu li a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show dropdown menu when parent <li> is hovered */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}

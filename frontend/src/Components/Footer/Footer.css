@@ -1,0 +1,31 @@
+#main {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 97);
+    padding-left: 250px;
+    padding-right: 250px;
+}
+
+#copyright {
+    margin-top: 5px;
+}
+
+#copyright #tg {
+    color: skyblue;
+    font-weight: bold;
+}
+
+#copyright p span {
+    font-weight: bold;
+}
+
+#social-logo{
+    display: flex;
+}
+
+#social-logo a{
+    display: flex;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}

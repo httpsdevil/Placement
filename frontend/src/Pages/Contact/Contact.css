@@ -1,0 +1,7 @@
+#main-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 79vh;
+    max-height: 79vh;
+}

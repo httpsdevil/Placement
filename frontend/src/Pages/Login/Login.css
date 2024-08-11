@@ -1,0 +1,32 @@
+#mainDiv{
+    display: flex;
+    justify-content: center;
+    min-height: 60vh;
+}
+
+#mainDiv a img{
+    display: flex;
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+}
+
+#company{
+    padding: 0px 30px;
+}
+
+.tg{
+    max-width: 15vw;
+    min-width: 15vw;
+}
+
+.btn2{
+    color: rgba(100, 100, 251, 0.835);
+    border: none;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.btn2 a{
+    text-decoration: none;
+}

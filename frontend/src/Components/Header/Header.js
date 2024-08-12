@@ -1,41 +1,44 @@
 import React from 'react'
 import './Header.css'
 import logo from '../../assets/Images/logo.jpg';
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     return (
-        <div>
-            <div id='head'>
+        <div className='header-container'>
+            <div className='header'>
 
-                <img src={logo} alt="logo" />
+                <img src={logo} alt="logo" className='header-logo' />
 
-                <div id='head-2'>
-                    <li><a href="/">Home</a></li>
+                <div className='header-nav'>
+                    <li><Link to="/">Home</Link></li>
 
-                    <ul class="dropdown-menu-container">
-                        <li class="dropdown">
-                            <a href="/login">Login <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/admin-login">Admin Login</a></li>
-                                <li><a href="/student-login">Student Login</a></li>
-                                <li><a href="/company-login">Company Login</a></li>
+                    <ul className="dropdown-menu-container">
+                        <li className="dropdown">
+                            <Link to="/login">Login <i className="bi bi-chevron-down dropdown-indicator"></i></Link>
+                            <ul className="dropdown-menu">
+                                <li><Link to="/admin-login">Admin Login</Link></li>
+                                <li><Link to="/student-login">Student Login</Link></li>
+                                <li><Link to="/company-login">Company Login</Link></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a href="/register">Register <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/register-student">Student</a></li>
-                                <li><a href="/register-company">Company</a></li>
+                        <li className="dropdown">
+                            <Link to="/register">Register <i className="bi bi-chevron-down dropdown-indicator"></i></Link>
+                            <ul className="dropdown-menu">
+                                <li><Link to="/register-student">Student</Link></li>
+                                <li><Link to="/register-company">Company</Link></li>
                             </ul>
                         </li>
                     </ul>
 
-                    <li><a href="/contact">Contact</a></li>
+                    <li><Link to="/contact">Contact</Link></li>
                 </div>
 
-                <div id='head-3'>
-                    <a href="/FAQ">FAQ</a>
+                <div className='header-faq'>
+                    <Link to="/FAQ">FAQ</Link>
                 </div>
+
+
 
             </div>
         </div>

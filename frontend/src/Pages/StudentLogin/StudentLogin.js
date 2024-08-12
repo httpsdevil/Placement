@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import Header from '../../Components/Header/Header';
+import Footer from '../../Components/Footer/Footer';
+import './StudentLogin.css'
 
 const StudentLogin = () => {
   const [loginData, setloginData] = useState({
@@ -64,6 +67,8 @@ const StudentLogin = () => {
 
   return (
     <div>
+      <Header/>
+      <div className="tg-77">
       <h1>Student Login</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -96,6 +101,8 @@ const StudentLogin = () => {
         <button type="submit">Submit</button>
       </form>
       <button onClick={handleButtonClick}>New Student? Click here to register</button>
+      </div>
+      <Footer/>
     </div>
   );
 };

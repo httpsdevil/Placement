@@ -12,8 +12,9 @@ const Footer = () => {
           <span id='tg'>SCSIT-PLACEMENT CELL</span>
         </div>
         <div id='social-logo'>
-          <a href="/"><img src={insta} alt="logo" /></a>
-          <a href="/"><img src={twit} alt="logo" /></a>
+          {/* target blank new tab kholega, and rel jo hai wh security measures ka kuch hai when using target blank */}
+          <a href="https://www.instagram.com/"  target="_blank"  rel="noopener noreferrer"><img src={insta} alt="logo" /></a>     
+          <a href="https://x.com/?lang=en"  target="_blank"  rel="noopener noreferrer"><img src={twit} alt="logo" /></a>
         </div>
       </div>
     </>

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Register.css'
+import Header from '../../Components/Header/Header';
+import Footer from '../../Components/Footer/Footer';
 
 
 const Register = () => {
@@ -97,7 +99,10 @@ const Register = () => {
 
     return (
         <div className='firstDiv'>
-            <h1>Student Register Page</h1>
+           <Header/>
+
+           <div className="tg-66">
+           <h1>Student Register Page</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>
@@ -235,6 +240,10 @@ const Register = () => {
             <div>
         <button onClick={handleButtonClick}>Already Register? Login</button>
       </div>
+           </div>
+
+      <Footer/>
+
         </div>
     );
 };

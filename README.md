@@ -46,11 +46,11 @@ The application uses a MongoDB database named `placement`, which contains the fo
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/placement-cell-portal.git
+   git clone https://github.com/httpsdevil/Placement.git
 
 2. Navigate to the backend directory:
    
-   cd placement-cell-portal/backend
+   cd Placement/backend
 3. Install dependencies:
 
    npm install
@@ -68,7 +68,7 @@ The application uses a MongoDB database named `placement`, which contains the fo
 
 1. Navigate to the frontend directory:
 
-   cd ../frontend
+   cd Placement/frontend
 
 2. Install dependencies:
 
@@ -88,11 +88,11 @@ The application uses a MongoDB database named `placement`, which contains the fo
 2. copy the 3rd point command and paste their
 3. git clone https://github.com/httpsdevil/Placement.git
 4. Then open the terminal for both folders (fronted and backend), you can open the terminal as integrated terminal or separately for both
-5. Run this command on both terminal -> npm install
+5. Run this command on both terminal for dependencies-> npm install
 6. All set, now run the server on both folder - 
    frontend - npm start
    backend - npm start or nodemon ".\server.js"
-   
+
 7. Check the .env file in backend folder for connection with mongodb, to adjust your connection
 8. And make sure you having Database named "placement"
 

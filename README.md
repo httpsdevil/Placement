@@ -79,3 +79,22 @@ The application uses a MongoDB database named `placement`, which contains the fo
 
    npm start
 
+
+
+
+# Inshort, to run this project on your pc
+
+1. Open command prompt in any of your directory
+2. copy the 3rd point command and paste their
+3. git clone https://github.com/httpsdevil/Placement.git
+4. Then open the terminal for both folders (fronted and backend), you can open the terminal as integrated terminal or separately for both
+5. Run this command on both terminal -> npm install
+6. All set, now run the server on both folder - 
+   frontend - npm start
+   backend - npm start or nodemon ".\server.js"
+   
+7. Check the .env file in backend folder for connection with mongodb, to adjust your connection
+8. And make sure you having Database named "placement"
+
+
+9. If you are still having problem in running this project, you can email me at mbendwal629@gmail.com   

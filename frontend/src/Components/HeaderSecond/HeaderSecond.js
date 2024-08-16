@@ -1,28 +1,36 @@
-import React from 'react'
-import './HeaderSecond.css'
+import React from 'react';
 import logo from '../../assets/Images/logo.jpg';
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom';
+import './HeaderSecond.css'; // Make sure to update this if you're moving to Tailwind CSS
 
 const HeaderSecond = () => {
-    return (
-        <div>
-            <div className='header'>
+  const navigate = useNavigate();
 
-                <img src={logo} alt="logo" className='header-logo' />
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/');
+  };
 
-                <div className='header-nav'>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/student-login">Student-Login</Link></li>
-                    <li><Link to="/contact">Contact</Link></li>
-                </div>
-
-                <div className='header-faq'>
-                    <Link to="/FAQ">FAQ</Link>
-                </div>
-
-            </div>
+  return (
+    <div className="bg-gray-800 text-white p-4">
+      <div className="flex items-center justify-between">
+        <img src={logo} alt="logo" className="w-24 h-auto" />
+        <div className="flex space-x-4">
+          <Link to="/" className="hover:underline">Home</Link>
+          <Link to="/login" className="hover:underline">Login</Link>
+          <Link to="/register" className="hover:underline">Register</Link>
+          <button 
+            onClick={handleLogout} 
+            className="bg-red-500 px-4 py-2 rounded hover:bg-red-700"
+          >
+            Logout
+          </button>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default HeaderSecond
+export default HeaderSecond;
+
+

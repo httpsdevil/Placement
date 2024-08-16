@@ -8,6 +8,7 @@ const mongoose = require("mongoose")
 const User = require('./models/userModel')
 const Company = require('./models/companyModel')
 const Admin = require('./models/adminModel')
+const findCompanyByEmail = require('./controllers/companyControllers'); 
 
 app.use(cors());
 app.use(express.json()); // For parsing JSON bodies
@@ -17,11 +18,12 @@ app.use(bodyParser.json());
 connectDB();
 
 
-
 app.get('/', (req, res) => {
     res.send("Home")
 });
 
+
+// REGISTER KARNE KE LIYE
 app.post('/register-student', async (req, res) => {
     // Access form data from the request body
     const { firstname, lastname, email, password, confirmPassword, bachelorCollege, graduationCollege, stream, cgpa } = req.body;
@@ -113,6 +115,22 @@ app.post('/register-company', async (req, res)=>{
 // })
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// LOGIN KE LIYE
 app.post('/student-login', async (req, res) => {
     const { email, password } = req.body;
 
@@ -180,6 +198,185 @@ app.post('/admin-login', async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Admin Dashboard ke liye - 
+
+// Endpoint to get the number of coordinators (admins)
+app.get('/api/dashboard/coordinators', async (req, res) => {
+    try {
+        const count = await Admin.countDocuments();
+        res.json({ count });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch coordinators count' });
+    }
+});
+
+// Endpoint to get the number of students
+app.get('/api/dashboard/students', async (req, res) => {
+    try {
+        const count = await User.countDocuments();
+        res.json({ count });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch students count' });
+    }
+});
+
+// Endpoint to get the number of companies
+app.get('/api/dashboard/companies', async (req, res) => {
+    try {
+        const count = await Company.countDocuments();
+        res.json({ count });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch companies count' });
+    }
+});
+
+
+
+
+// Admin Active Drives ke liye - 
+app.get('/api/active-drives', async (req, res) => {
+    try {
+        // Fetch all fields except the password
+        const companies = await Company.find({}, 'full_name createdAt role designation email contact_number website city about_role -_id');
+        res.json(companies);
+    } catch (error) {
+        console.error('Error fetching companies:', error);
+        res.status(500).json({ error: 'Failed to fetch companies' });
+    }
+});
+
+
+
+
+// Admin ke Students profile ke liye - 
+app.get('/api/students', async (req, res) => {
+    try {
+        const students = await User.find(); // Fetch all students
+        res.json(students);
+    } catch (error) {
+        console.error('Error fetching students:', error);
+        res.status(500).json({ message: 'Failed to fetch students', error });
+    }
+});
+
+
+
+// Admin ke Coordinators ke liye
+app.get('/api/coordinators', async (req, res) => {
+    try {
+        const admins = await Admin.find({}, '-password'); // Exclude password field
+        res.json(admins);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch coordinators' });
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Student dashboard ke liye 
+
+// Middleware to authenticate token
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    if (token == null) return res.sendStatus(401);
+
+    jwt.verify(token, 'devil_demon_cursed', (err, user) => {
+        if (err) return res.sendStatus(403);
+        req.user = user;
+        next();
+    });
+};
+
+// Get student profile
+app.get('/api/student/application', authenticateToken, async (req, res) => {
+    try {
+        const student = await User.findById(req.user.id);
+        if (!student) return res.status(404).json({ message: 'Student not found' });
+        res.json(student);
+    } catch (error) {
+        console.error('Error fetching student profile:', error);
+        res.status(500).json({ message: 'Failed to fetch profile' });
+    }
+});
+
+// Update student profile
+app.put('/api/student/profile', authenticateToken, async (req, res) => {
+    const { first_name, last_name, bachelor_college, graduation_college, stream, cgpa } = req.body;
+    try {
+        const updatedStudent = await User.findByIdAndUpdate(
+            req.user.id,
+            { first_name, last_name, bachelor_college, graduation_college, stream, cgpa },
+            { new: true, runValidators: true } // Ensures validation rules are applied
+        );
+        if (!updatedStudent) return res.status(404).json({ message: 'Student not found' });
+        res.json(updatedStudent);
+    } catch (error) {
+        console.error('Error updating student profile:', error);
+        res.status(500).json({ message: 'Failed to update profile' });
+    }
+});
+
+
+
+
+// Update student profile endpoint
+app.get('/api/student/application', authenticateToken, async (req, res) => {
+    try {
+        const student = await User.findById(req.user.id).select('-password'); // Exclude password
+        if (!student) return res.status(404).json({ message: 'Student not found' });
+        res.json(student);
+    } catch (error) {
+        console.error('Error fetching student profile:', error);
+        res.status(500).json({ message: 'Failed to fetch profile' });
+    }
+});
+
+
+
+
+// // Company's data (for active drive)
+app.get('/api/companies', async (req, res) => {
+    try {
+      const companies = await Company.find({}, '-password'); // Exclude password from the result
+      res.status(200).json(companies);
+    } catch (error) {
+      console.error('Error fetching companies:', error);
+      res.status(500).json({ message: 'Server error. Please try again later.' });
+    }
+  });
 
 
 

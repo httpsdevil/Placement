@@ -1,33 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import HeaderSecond from '../../Components/HeaderSecond/HeaderSecond'
-import Footer from '../../Components/Footer/Footer'
-import './AdminLogin.css'
+import Header from '../../Components/Header/Header';
+import Footer from '../../Components/Footer/Footer';
 
 const AdminLogin = () => {
-  const [loginData, setloginData] = useState({
+  const [loginData, setLoginData] = useState({
     email: "",
     password: ""
-  })
+  });
 
-  const [error, setError] = useState(""); // State to manage error messages
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setloginData((prevData) => ({
+    setLoginData(prevData => ({
       ...prevData,
       [name]: value,
     }));
-  }
-
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // Send a request to your authentication server
       const response = await fetch('http://localhost:4000/admin-login', {
         method: 'POST',
         headers: {
@@ -38,70 +35,64 @@ const AdminLogin = () => {
 
       const result = await response.json();
 
-      console.log("Response mila hai :", response);
-
       if (response.ok) {
-        // Save the token received from the server
         const { token } = result;
-        localStorage.setItem('token', token); // Store token in localStorage
-        console.log('Login successful, token saved');
-
-        // On success, redirect to the dashboard
+        localStorage.setItem('token', token);
         navigate('/admin-dashboard');
       } else {
-        // On failure, show an error message
         setError(result.message || 'Login failed. Please try again.');
       }
     } catch (error) {
-      // Handle network errors
       setError('An unexpected error occurred. Please try again.');
     }
   };
 
-
   return (
-    <div>
-      <HeaderSecond />
-      <div className='tg-15'>
-        <h1>Admin Login</h1>
-        <form onSubmit={handleSubmit}>
+    <div className="bg-gray-100 min-h-screen flex flex-col">
+      <Header />
+      <div className="container mx-auto p-8 bg-white rounded-lg shadow-md">
+        <h1 className="text-2xl font-bold mb-6">Admin Login</h1>
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label>
-              Email :
+            <label className="block text-gray-700 mb-2">
+              Email:
               <input
                 type="email"
                 name="email"
                 value={loginData.email}
                 onChange={handleChange}
-                placeholder='Email'
-                required />
+                placeholder="Email"
+                required
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+              />
             </label>
           </div>
-
           <div>
-            <label>
-              Password :
+            <label className="block text-gray-700 mb-2">
+              Password:
               <input
                 type="password"
                 name="password"
                 value={loginData.password}
                 onChange={handleChange}
-                placeholder='password'
-                required />
+                placeholder="Password"
+                required
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+              />
             </label>
           </div>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-
-          <button type='submit'>
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+          >
             Submit
           </button>
         </form>
       </div>
-
       <Footer />
-
     </div>
-  )
-}
+  );
+};
 
-export default AdminLogin
+export default AdminLogin;

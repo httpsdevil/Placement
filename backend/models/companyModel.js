@@ -40,7 +40,7 @@ const companySchema = new mongoose.Schema({
         enum: ['company'],
         default: 'company'
     }
-})
+}, { timestamps: true });
 
 
 // Hash the password before saving -

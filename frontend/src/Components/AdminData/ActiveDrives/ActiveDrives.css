@@ -1,0 +1,35 @@
+/* ActiveDrives.css */
+
+.active-drives-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem; /* Add space between the flex items */
+    padding: 2rem;
+    justify-content: center; /* Center items in the container */
+}
+
+.active-drives-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center list items */
+}
+
+.active-drives-list li {
+    flex: 1 1 300px; /* Flex-grow, flex-shrink, and flex-basis for responsive layout */
+    margin-bottom: 2rem;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Rounded corners for cards */
+    background-color: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.active-drives-list li:hover {
+    transform: translateY(-5px); /* Slight upward movement on hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
+}

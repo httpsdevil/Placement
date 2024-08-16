@@ -1,0 +1,59 @@
+/* StudentsProfile.css */
+
+.students-profile-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    max-width: 1200px; /* Adjusted for a two-column layout */
+    margin: 0 auto; /* Center align the container */
+}
+
+.students-profile-container h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.students-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Two columns with responsive sizing */
+    gap: 20px; /* Space between cards */
+}
+
+.student-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.student-card h2 {
+    font-size: 1.6rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.student-card p {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 5px 0;
+    line-height: 1.6; /* Better readability */
+}
+
+.student-card p:first-of-type {
+    font-weight: bold; /* Highlight the first piece of information */
+}
+
+@media (max-width: 768px) {
+    .students-list {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+}
